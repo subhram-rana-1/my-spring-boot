@@ -1,6 +1,7 @@
 package com.subhram.myspringboot.services
 
 import com.subhram.myspringboot.entities.User
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 
@@ -9,7 +10,9 @@ interface UserService {
 }
 
 @Service
-class UserServiceImpl1: UserService {
+class UserServiceImpl1(
+    @Autowired private val headoutUserService: HeadoutUserService
+): UserService {
     override fun getUser(userId: String, age: Int): User {
         return User(userId, "Subhram Rana", age, 5.7)
     }
