@@ -1,5 +1,4 @@
 package com.subhram.myspringboot.aspects
-import org.aopalliance.intercept.Joinpoint
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -9,9 +8,11 @@ import org.springframework.stereotype.Component
 @Component
 class AuthenticationAspect {
     @Around("@annotation(Authentication)")
-    fun runAuthentication(jp: ProceedingJoinPoint) {
+    fun runAuthentication(jp: ProceedingJoinPoint): Any? {
         println("before Auth")
-        jp.proceed()
+        val a = jp.proceed()
         println("after Auth")
+
+        return a
     }
 }
